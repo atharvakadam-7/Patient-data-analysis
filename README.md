@@ -1,39 +1,56 @@
 Patient Data Analysis Dashboard
- Project Overview
-This Power BI project provides a comprehensive analysis of patient demographics, clinical trends, and healthcare delivery metrics. The dashboard is designed to transform raw patient data into actionable insights for healthcare administrators and medical professionals.
+A Power BI project built to make sense of patient data across demographics, clinical trends, and operational healthcare metrics. The goal was to give healthcare administrators and medical staff a single place to look at their data without having to dig through spreadsheets.
 
- Dashboard Previews
+Dashboard Previews
+Overview Page
+A high-level snapshot of the patient population — who's coming in, when, and in what volumes. This is the first page most stakeholders will land on.
 <img width="1473" height="832" alt="image" src="https://github.com/user-attachments/assets/996d448c-e0bf-42f2-b344-fb3219ddc907" />
-This page provides a high-level overview of the patient population and key performance indicators.
+Clinical Metrics Page
+Where things get more granular. This page breaks down health outcomes, admission rates, and segment-level trends over time. Useful for department leads who need more than just totals.
 <img width="1483" height="829" alt="image" src="https://github.com/user-attachments/assets/8bb7c114-21d1-49d4-ab64-d04c9e6445f2" />
-This page focuses on detailed clinical metrics, trends over time, and segment-specific analysis.
+What's in the Dashboard
+Interactive Filtering
+Slicers let you cut the data by date range, patient demographics, and department. Most of the visuals respond to these filters simultaneously, so you're not jumping between pages to answer a single question.
+Clinical KPIs
+Patient volume, admission rates, and outcome metrics are tracked at the top level so they're always visible regardless of which filters are active.
+Trend Analysis
+Month-over-month and year-over-year views for the metrics that matter. Useful for spotting patterns that don't show up in aggregate numbers.
 
- Key Features
-Interactive Filtering: Filter data by date ranges, patient demographics, and department.
+Repository Structure
+patient-data-analysis/
+│
+├── Patient data.pbix          # Main Power BI report file
+│
+├── Data/                      # Raw source data
+│   ├── patients.csv
+│   └── clinical_events.xlsx
+│
+├── Backgrounds/               # Custom background images used in the report
+│
+└── assets/                    # Images used in this README
 
-Clinical KPIs: Track patient volume, admission rates, and health outcomes.
+Data Model Notes
+The data model connects patient records to clinical events through a shared patient ID. Relationships are set to single-direction filtering to keep query performance reasonable on larger datasets.
+The custom backgrounds in the Backgrounds/ folder are linked directly inside the .pbix file. If you move those files after cloning, you'll need to re-point the background images in the report's Format pane.
+Tools used: Power BI Desktop
 
-Trend Analysis: Visualize changes in patient data over months or years.
+Getting Started
+1. Clone the repository
+bashgit clone https://github.com/atharvakadam-7/patient-data-analysis.git
+2. Install Power BI Desktop
+If you don't already have it, download the latest version from Microsoft's official site. The free version works fine for everything in this project.
+3. Open the report
+Open Patient data.pbix in Power BI Desktop.
+4. Fix data source paths if needed
+Power BI stores absolute file paths, so if the data doesn't load on your machine:
 
- Repository Structure
-Patient data.pbix: The main Power BI report file.
+Go to Transform Data → Data Source Settings
+Update the file paths to point to the files in the /Data folder
 
-Data/: Contains the raw datasets (Excel/CSV) used for the report.
+This is a one-time fix after cloning.
 
-Backgrounds/: Custom background assets used for the dashboard design.
+Notes
 
-assets/: Images used in this README.
-
- Data Mapping & Design
-The dashboard utilizes custom backgrounds located in the Backgrounds/ folder. The data model was structured to ensure efficient relationships between patient records and clinical events.
-Design Tools: Power BI
- How to Use
-Clone the Repo:
-
-Bash
-git clone https://github.com/atharvakadam-7/patient-data-analysis.git
-Install Power BI Desktop: Ensure you have the latest version of Power BI Desktop.
-
-Open the Project: Launch Patient data.pbix.
-
-Fix Data Paths: If the data doesn't load, go to Transform Data > Data Source Settings and point the sources to the files in the /Data folder.
+The .pbix file includes the data model, all visuals, and the report layout. You don't need anything else to explore the report locally.
+The raw files in /Data are there in case you want to inspect the source data or rebuild the model from scratch.
+If you want to connect this to a live data source rather than flat files, the query structure in Power Query Editor is straightforward to adapt.
